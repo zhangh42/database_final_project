@@ -1,5 +1,6 @@
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -8,4 +9,27 @@
    /*background-color: lightslategray;*/
     font-weight: bold;
     /*margin-top: 0px;*/
+}
+
+.m_left_head {
+    border-right: 2px dotted gold;
+}
+
+.m_menu {
+    list-style: none;
+    width: 80%;
+    margin: auto;
+}
+
+.m_content {
+    /*padding: 10px;*/
+    background: lightgreen;
+}
+
+.m_h2 {
+    width: 80%;
+    text-align: center;
+    background: greenyellow;
+    border-radius: 50%;
+    margin: 10px auto;
 }
