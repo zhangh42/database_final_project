@@ -32,7 +32,8 @@
 
 .m_content {
     /*padding: 10px;*/
-    background: lightgreen;
+    /*background: lightgreen;*/
+    padding: 20px;
 }
 
 .m_h2 {
