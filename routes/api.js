@@ -29,9 +29,23 @@ router.get('/', function (req, res, next) {
   res.end();
 });
 
+// 获取员工信息
 router.get('/employee', function (req, res, next) {
-    connection.query("select * from employee", function(err, rows){
-      res.json(rows);
+  connection.query("select * from employee", function (err, rows) {
+    res.json(rows);
+  })
+});
+
+// 增加员工信息
+router.post('/employee', function (req, res, next) {
+  var body = req.body;
+  connection.query('insert into employee values(?, ?, ?, ?, ?, ?, ?)',
+    [body['id'], body['name'], body['sex'], body['age'], body['phone'], body['date'], body['salary']],
+    function (err, rows) {
+      if (err) {
+        res.end(err.message);
+      }
+      res.end();
     })
 });
 

@@ -1,10 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>hello</title>
-    </head>
-    <body>
-        商品管理系统
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <title>hello</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!--员工信息新增表单-->
+    <form class="form-inline" action="/api/employee" method="POST">
+        <div class="form-group">
+            <input type="number" class="form-control" size="10" name="id" id="E_id" placeholder="请输入员工id" required>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" type="text" size="10" name="name" id="E_name" placeholder="姓名" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <select class="form-control" name="sex" id="E_sex">
+                    <option value="male" selected>男</option>
+                    <option value="female">女</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" type="number" min="1" max="100" name="age" id="E_age" placeholder="年龄">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" type="tel" size="11" name="phone" id="E_phone" placeholder="手机号码">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" type="date" name="date" id="E_date" placeholder="入职日期">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" type="number" size="10" step="0.01" name="salary" id="E_salary" placeholder="薪水">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default">add</button>
+    </form>
+</body>
+
 </html>
