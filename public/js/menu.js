@@ -88,7 +88,7 @@ function employeeInfo() {
                     + '<td>' + employee.E_date.slice(0, 10) + '</td>'
                     + '<td>' + employee.E_salary + '</td>'
                     // 增加删去和修改按钮
-                    + '<td>' + '<button class="del_employee" name="E_id" value="' + employee.E_id + '" onclick="del_employee(this)">删除</button></>' + '</td>'
+                    + '<td>' + '<button class="del_employee btn btn-danger" name="E_id" value="' + employee.E_id + '" onclick="del_employee(this)">删除</button></>' + '</td>'
                 str += t + '</tr>';
             }
             str += '</table></div>';
