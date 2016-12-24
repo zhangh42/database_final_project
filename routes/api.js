@@ -49,4 +49,15 @@ router.post('/employee', function (req, res, next) {
     })
 });
 
+// 删除员工信息
+router.delete('/employee', function (req, res, next) {
+  var body = req.body;
+  connection.query('DELETE FROM employee WHERE E_id = ?', [body.E_id], function (err, rows) {
+    if (err) {
+      res.end(err.message);
+    }
+    res.end();
+  });
+});
+
 module.exports = router;

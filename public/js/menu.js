@@ -1,45 +1,65 @@
 // 这里放菜单的点击相应函数
 
+
+// 删除员工
+function del_employee(obj) {   
+    var E_id = obj.value;
+    $.ajax({
+        url: '/api/employee',
+        type: 'delete',
+        data: {'E_id':E_id},
+        success: function (result) {
+            if (result) {
+                alert(result);
+            }
+            // 重新刷新该内容
+            else {
+                employeeInfo();
+            }
+        }
+    })
+}
+
 // 增加表单
-const add_form = `<form id="add_form" class="form-inline">
-        <div class="form-group">
-            <input type="number" class="form-control" size="10" name="id" id="E_id" placeholder="请输入员工id" required>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="text" size="10" name="name" id="E_name" placeholder="姓名" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <select class="form-control" name="sex" id="E_sex">
-                    <option value="男" selected>男</option>
-                    <option value="女">女</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="number" min="1" max="100" name="age" id="E_age" placeholder="年龄">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="tel" size="11" name="phone" id="E_phone" placeholder="手机号码">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="date" name="date" id="E_date" placeholder="入职日期">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="number" size="10" step="0.01" name="salary" id="E_salary" placeholder="薪水">
-            </div>
-        </div>
-        <button type="submit" class="btn btn-default">add</button>
-    </form>`
+const add_form = '<form id="add_form" class="form-inline">\
+        <div class="form-group">\
+            <input type="number" class="form-control" name="id" id="E_id" placeholder="请输入员工id" required>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <input class="form-control" type="text" name="name" id="E_name" placeholder="姓名" required>\
+            </div>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <select class="form-control" name="sex" id="E_sex">\
+                    <option value="男" selected>男</option>\
+                    <option value="女">女</option>\
+                </select>\
+            </div>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <input class="form-control" type="number" min="1" max="100" name="age" id="E_age" placeholder="年龄">\
+            </div>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <input class="form-control" type="tel" name="phone" id="E_phone" placeholder="手机号码">\
+            </div>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <input class="form-control" type="date" name="date" id="E_date" placeholder="入职日期">\
+            </div>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <input class="form-control" type="number" step="0.01" name="salary" id="E_salary" placeholder="薪水">\
+            </div>\
+        </div>\
+        <button type="submit" class="btn btn-default">add</button>\
+    </form><br>'
 
 
 
@@ -59,9 +79,16 @@ function employeeInfo() {
                 var employee = employees[i];
                 str += '<tr>'
                 var t = '';
-                for (var j = 0; j < 7; j++) {
-                    t += '<td>' + employee[Object.keys(employee)[j]] + '</td>'
-                }
+                // 表中的每一行
+                t += '<td>' + employee.E_id + '</td>'
+                    + '<td>' + employee.E_name + '</td>'
+                    + '<td>' + employee.E_sex + '</td>'
+                    + '<td>' + employee.E_age + '</td>'
+                    + '<td>' + employee.E_phone + '</td>'
+                    + '<td>' + employee.E_date.slice(0, 10) + '</td>'
+                    + '<td>' + employee.E_salary + '</td>'
+                    // 增加删去和修改按钮
+                    + '<td>' + '<button class="del_employee" name="E_id" value="' + employee.E_id + '" onclick="del_employee(this)">删除</button></>' + '</td>'
                 str += t + '</tr>';
             }
             str += '</table></div>';
@@ -84,7 +111,25 @@ function employeeInfo() {
                         }
                     }
                 })
-            })
+            });
+            // 是否删除操作
+            // $('.del_employee').submit(function (e) {
+            //     e.preventDefault();
+            //     $.ajax({
+            //         url: '/api/employee',
+            //         type: 'delete',
+            //         data: $('.del_employee').serialize(),
+            //         success: function (result) {
+            //             if (result) {
+            //                 alert(result);
+            //             }
+            //             // 重新刷新该内容
+            //             else {
+            //                 employeeInfo();
+            //             }
+            //         }
+            //     })
+            // });
         }
     };
     xhttp.open("GET", "api/employee", true);
