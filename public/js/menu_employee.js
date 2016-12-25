@@ -114,7 +114,7 @@ function employeeInfo() {
             // 建立员工表格
             var head = '<h2 class="text-center">员工信息</h2>';
             var str = '';
-            str += '<div class="table-responsive"><table class="table table-bordered">';
+            str += '<div class="table-responsive"><table class="table table-bordered table-hover">';
             str += '<tr><th>id</th><th>姓名</th><th>性别</th><th>年龄</th><th>手机号码</th><th>入职日期</th><th>薪水</th><th>操作</th></tr>'
             for (var i = 0; i < employees.length; i++) {
                 var employee = employees[i];

@@ -23,7 +23,7 @@ function productInfo() {
     $.getJSON('api/product', function (result) {
         var products = result;
         var str = '';
-        str += '<div class="table-responsive"><table class="table table-bordered">';
+        str += '<div class="table-responsive"><table class="table table-bordered table-hover">';
         str += '<tr><th>id</th><th>商品名</th><th>售价</th><th>采购价</th><th>供应商</th><td>操作</td></tr>'
         for (var i = 0; i < products.length; i++) {
             var product = products[i];

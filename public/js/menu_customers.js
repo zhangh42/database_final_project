@@ -97,7 +97,7 @@ function customerInfo() {
     $.getJSON('api/customer', function (result) {
         var customers = result;
         var str = '';
-        str += '<div class="table-responsive"><table class="table table-bordered">';
+        str += '<div class="table-responsive"><table class="table table-bordered table-hover">';
         str += '<tr><th>id</th><th>姓名</th><th>性别</th><th>年龄</th><th>手机号码</th><th>住址</th><th>操作</th></tr>'
         for (var i = 0; i < customers.length; i++) {
             var customer = customers[i];
