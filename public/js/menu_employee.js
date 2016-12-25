@@ -1,5 +1,6 @@
-// 这里放菜单的点击相应函数
+// 这里菜单中员工信息的点击相应函数
 
+'use strict';
 
 // 删除员工
 function del_employee(obj) {

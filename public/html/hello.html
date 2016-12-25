@@ -18,48 +18,44 @@
 </head>
 
 <body>
-    <!--员工信息新增表单-->
-    <form class="form-inline" action="/api/employee" method="POST">
-        <div class="form-group">
-            <input type="number" class="form-control" size="10" name="id" id="E_id" placeholder="请输入员工id" required>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="text" size="10" name="name" id="E_name" placeholder="姓名" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <select class="form-control" name="sex" id="E_sex">
-                    <option value="male" selected>男</option>
-                    <option value="female">女</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="number" min="1" max="100" name="age" id="E_age" placeholder="年龄">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="tel" size="11" name="phone" id="E_phone" placeholder="手机号码">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="date" name="date" id="E_date" placeholder="入职日期">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input class="form-control" type="number" size="10" step="0.01" name="salary" id="E_salary" placeholder="薪水">
-            </div>
-        </div>
-        <button type="submit" class="btn btn-default">add</button>
-    </form>
+    <form id="add_form" class="form-inline">\
+        <div class="form-group">\
+            <input type="number" class="form-control" name="id" id="C_id" placeholder="请输入客户id" required>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <input class="form-control" type="text" name="name" id="C_name" placeholder="姓名">\
+            </div>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <select class="form-control" name="sex" id="C_sex">\
+                    <option value="男" selected>男</option>\
+                    <option value="女">女</option>\
+                </select>\
+            </div>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <input class="form-control" type="number" min="1" max="100" name="age" id="E_age" placeholder="年龄">\
+            </div>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <input class="form-control" type="tel" name="phone" id="C_phone" placeholder="手机号码">\
+            </div>\
+        </div>\
+        <div class="form-group">\
+            <div class="input-group">\
+                <input class="form-control" type="text" step="0.01" name="address" id="C_address" placeholder="住址">\
+            </div>\
+        </div>\
+        <div class="form-group">\
+        <button class="btn btn-success" type="button" onclick="add_employee()">add</button>\
+        <button class="btn btn-info" type="button" onclick="update_employee()">update</button>\
+    </div>\
+    </form><br>
 
-    <form class="del_employee"><input type="hidden" name="E_id"/> <button type="submit">删除</button></form>
 
 </body>
 
