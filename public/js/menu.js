@@ -2,12 +2,12 @@
 
 
 // 删除员工
-function del_employee(obj) {   
+function del_employee(obj) {
     var E_id = obj.value;
     $.ajax({
         url: '/api/employee',
         type: 'delete',
-        data: {'E_id':E_id},
+        data: { 'E_id': E_id },
         success: function (result) {
             if (result) {
                 alert(result);
@@ -20,6 +20,49 @@ function del_employee(obj) {
     })
 }
 
+// 增加员工
+function add_employee() {
+    $('#add_form').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/api/employee',
+            type: 'post',
+            data: $('#add_form').serialize(),
+            success: function (result) {
+                if (result) {
+                    alert(result);
+                }
+                // 重新刷新该内容
+                else {
+                    employeeInfo();
+                }
+            }
+        })
+    });
+}
+
+// 更新员工信息
+function update_employee() {
+    $('#add_form').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/api/employee',
+            type: 'patch',
+            data: $('#add_form').serialize(),
+            success: function (result) {
+                if (result) {
+                    alert(result);
+                }
+                // 重新刷新该内容
+                else {
+                    employeeInfo();
+                }
+            }
+        })
+    });
+}
+
+
 // 增加表单
 const add_form = '<form id="add_form" class="form-inline">\
         <div class="form-group">\
@@ -27,7 +70,7 @@ const add_form = '<form id="add_form" class="form-inline">\
         </div>\
         <div class="form-group">\
             <div class="input-group">\
-                <input class="form-control" type="text" name="name" id="E_name" placeholder="姓名" required>\
+                <input class="form-control" type="text" name="name" id="E_name" placeholder="姓名">\
             </div>\
         </div>\
         <div class="form-group">\
@@ -58,7 +101,10 @@ const add_form = '<form id="add_form" class="form-inline">\
                 <input class="form-control" type="number" step="0.01" name="salary" id="E_salary" placeholder="薪水">\
             </div>\
         </div>\
-        <button type="submit" class="btn btn-default">add</button>\
+        <div class="form-group">\
+        <button class="btn btn-success" type="submit" onclick="add_employee()">add</button>\
+        <button class="btn btn-info" type="submit" onclick="update_employee()">update</button>\
+         </div>\
     </form><br>'
 
 
@@ -74,7 +120,7 @@ function employeeInfo() {
             var head = '<h2 class="text-center">员工信息</h2>';
             var str = '';
             str += '<div class="table-responsive"><table class="table table-bordered">';
-            str += '<tr><th>id</th><th>姓名</th><th>性别</th><th>年龄</th><th>手机号码</th><th>入职日期</th><th>薪水</th></tr>'
+            str += '<tr><th>id</th><th>姓名</th><th>性别</th><th>年龄</th><th>手机号码</th><th>入职日期</th><th>薪水</th><th>操作</th></tr>'
             for (var i = 0; i < employees.length; i++) {
                 var employee = employees[i];
                 str += '<tr>'
@@ -88,48 +134,14 @@ function employeeInfo() {
                     + '<td>' + employee.E_date.slice(0, 10) + '</td>'
                     + '<td>' + employee.E_salary + '</td>'
                     // 增加删去和修改按钮
-                    + '<td>' + '<button class="del_employee btn btn-danger" name="E_id" value="' + employee.E_id + '" onclick="del_employee(this)">删除</button></>' + '</td>'
+                    + '<td>' + '<button type="button" class="del_employee btn btn-danger" name="E_id" value="' + employee.E_id + '" onclick="del_employee(this)">删除</button></>'
+                    + '</td>'
                 str += t + '</tr>';
             }
             str += '</table></div>';
 
-            $('#content').get(0).innerHTML = head + add_form + str;
-            // 监听表单是否点击
-            $('#add_form').submit(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: '/api/employee',
-                    type: 'post',
-                    data: $('#add_form').serialize(),
-                    success: function (result) {
-                        if (result) {
-                            alert(result);
-                        }
-                        // 重新刷新该内容
-                        else {
-                            employeeInfo();
-                        }
-                    }
-                })
-            });
-            // 是否删除操作
-            // $('.del_employee').submit(function (e) {
-            //     e.preventDefault();
-            //     $.ajax({
-            //         url: '/api/employee',
-            //         type: 'delete',
-            //         data: $('.del_employee').serialize(),
-            //         success: function (result) {
-            //             if (result) {
-            //                 alert(result);
-            //             }
-            //             // 重新刷新该内容
-            //             else {
-            //                 employeeInfo();
-            //             }
-            //         }
-            //     })
-            // });
+            // 更新html内容
+            $('#content').get(0).innerHTML = head + add_form + str;            
         }
     };
     xhttp.open("GET", "api/employee", true);

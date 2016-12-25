@@ -39,6 +39,7 @@ router.get('/employee', function (req, res, next) {
 // 增加员工信息
 router.post('/employee', function (req, res, next) {
   var body = req.body;
+
   connection.query('insert into employee values(?, ?, ?, ?, ?, ?, ?)',
     [body['id'], body['name'], body['sex'], body['age'], body['phone'], body['date'], body['salary']],
     function (err, rows) {
@@ -47,6 +48,32 @@ router.post('/employee', function (req, res, next) {
       }
       res.end();
     })
+});
+
+// 修改员工信息
+router.patch('/employee', function (req, res, next) {
+  var body = req.body;
+
+  // 提取需要更新的参数
+  var sql = 'UPDATE employee SET ';
+  var keys = Object.keys(body);
+  for (var i = 0; i < keys.length; i++) {
+    if (body[keys[i]]) {
+      sql += 'E_' + keys[i] + '=' + mysql.escape(body[keys[i]]) + ',';
+    }
+  }
+  // 去掉多余的逗号
+  if (sql.endsWith(',')) {
+    sql = sql.slice(0, sql.length - 1);
+  }
+  sql += ' WHERE E_id=' + body.id;
+  console.log(sql);
+  connection.query(sql, function (err, rows) {
+    if (err) {
+      res.end(err.message);
+    }
+    res.end();
+  })
 });
 
 // 删除员工信息
