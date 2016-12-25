@@ -76,7 +76,20 @@ function del_customer(obj) {
 }
 
 function update_customer() {
-
+    $.ajax({
+        url: '/api/customer',
+        type: 'patch',
+        data: $('#add_form').serialize(),
+        success: function (result) {
+            if (result) {
+                alert(result);
+            }
+            // 重新刷新该内容
+            else {
+                customerInfo();
+            }
+        }
+    });
 }
 
 
