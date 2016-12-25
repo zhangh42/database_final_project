@@ -22,43 +22,37 @@ function del_employee(obj) {
 
 // 增加员工
 function add_employee() {
-    $('#add_form').submit(function (e) {
-        e.preventDefault();
-        $.ajax({
-            url: '/api/employee',
-            type: 'post',
-            data: $('#add_form').serialize(),
-            success: function (result) {
-                if (result) {
-                    alert(result);
-                }
-                // 重新刷新该内容
-                else {
-                    employeeInfo();
-                }
+    $.ajax({
+        url: '/api/employee',
+        type: 'post',
+        data: $('#add_form').serialize(),
+        success: function (result) {
+            if (result) {
+                alert(result);
             }
-        })
+            // 重新刷新该内容
+            else {
+                employeeInfo();
+            }
+        }
     });
 }
 
 // 更新员工信息
 function update_employee() {
-    $('#add_form').submit(function (e) {
-        e.preventDefault();
-        $.ajax({
-            url: '/api/employee',
-            type: 'patch',
-            data: $('#add_form').serialize(),
-            success: function (result) {
-                if (result) {
-                    alert(result);
-                }
-                // 重新刷新该内容
-                else {
-                    employeeInfo();
-                }
+    $.ajax({
+        url: '/api/employee',
+        type: 'patch',
+        data: $('#add_form').serialize(),
+        success: function (result) {
+            if (result) {
+                alert(result);
             }
-        })
+            // 重新刷新该内容
+            else {
+                employeeInfo();
+            }
+        }
     });
 }
 
@@ -102,8 +96,8 @@ const add_form = '<form id="add_form" class="form-inline">\
             </div>\
         </div>\
         <div class="form-group">\
-        <button class="btn btn-success" type="submit" onclick="add_employee()">add</button>\
-        <button class="btn btn-info" type="submit" onclick="update_employee()">update</button>\
+        <button class="btn btn-success" type="button" onclick="add_employee()">add</button>\
+        <button class="btn btn-info" type="button" onclick="update_employee()">update</button>\
          </div>\
     </form><br>'
 
@@ -141,7 +135,7 @@ function employeeInfo() {
             str += '</table></div>';
 
             // 更新html内容
-            $('#content').get(0).innerHTML = head + add_form + str;            
+            $('#content').get(0).innerHTML = head + add_form + str;
         }
     };
     xhttp.open("GET", "api/employee", true);
