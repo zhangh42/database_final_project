@@ -41,7 +41,20 @@ const add_form_html = '<form id="add_form" class="form-inline">\
     </form><br>'
 
 function add_customer() {
-
+    $.ajax({
+        url: '/api/customer',
+        type: 'post',
+        data: $('#add_form').serialize(),
+        success: function (result) {
+            if (result) {
+                alert(result);
+            }
+            // 重新刷新该内容
+            else {
+                customerInfo();
+            }
+        }
+    });
 }
 
 function del_customer() {

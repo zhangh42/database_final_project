@@ -33,8 +33,8 @@ router.get('/customer', function (req, res, next) {
 router.post('/customer', function (req, res, next) {
     var body = req.body;
 
-    connection.query('insert into employee values(?, ?, ?, ?, ?, ?, ?)',
-        [body['id'], body['name'], body['sex'], body['age'], body['phone'], body['date'], body['salary']],
+    connection.query('insert into customer values(?, ?, ?, ?, ?, ?)',
+        [body['id'], body['name'], body['sex'], body['age'], body['phone'], body['address']],
         function (err, rows) {
             if (err) {
                 res.end(err.message);
