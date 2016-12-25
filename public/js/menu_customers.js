@@ -21,7 +21,7 @@ const add_form_html = '<form id="add_form" class="form-inline">\
         </div>\
         <div class="form-group">\
             <div class="input-group">\
-                <input class="form-control" type="number" min="1" max="100" name="age" id="E_age" placeholder="年龄">\
+                <input class="form-control" type="number" min="1" max="100" name="age" id="C_age" placeholder="年龄">\
             </div>\
         </div>\
         <div class="form-group">\
@@ -35,24 +35,49 @@ const add_form_html = '<form id="add_form" class="form-inline">\
             </div>\
         </div>\
         <div class="form-group">\
-        <button class="btn btn-success" type="button" onclick="add_employee()">add</button>\
-        <button class="btn btn-info" type="button" onclick="update_employee()">update</button>\
+        <button class="btn btn-success" type="button" onclick="add_customer()">add</button>\
+        <button class="btn btn-info" type="button" onclick="update_customer()">update</button>\
     </div>\
     </form><br>'
 
-function add_customer(){
+function add_customer() {
 
 }
 
-function del_customer(){
+function del_customer() {
 
 }
 
-function update_customer(){
+function update_customer() {
 
 }
 
 
 function customerInfo() {
-    $('#content').get(0).innerHTML = head + add_form_html;
+    $.getJSON('api/customer', function (result) {
+        var customers = result;
+        var str = '';
+        str += '<div class="table-responsive"><table class="table table-bordered">';
+        str += '<tr><th>id</th><th>姓名</th><th>性别</th><th>年龄</th><th>手机号码</th><th>住址</th><th>操作</th></tr>'
+        for (var i = 0; i < customers.length; i++) {
+            var customer = customers[i];
+            str += '<tr>'
+            var t = '';
+            // 表中的每一行
+            t += '<td>' + customer.C_id + '</td>'
+                + '<td>' + customer.C_name + '</td>'
+                + '<td>' + customer.C_sex + '</td>'
+                + '<td>' + customer.C_age + '</td>'
+                + '<td>' + customer.C_phone + '</td>'
+                + '<td>' + customer.C_address + '</td>'
+                // 增加删去和修改按钮
+                + '<td>' + '<button type="button" class="btn btn-danger" name="C_id" value="' + customer.C_id + '" onclick="del_customer(this)">删除</button></>'
+                + '</td>'
+            str += t + '</tr>';
+        }
+        str += '</table></div>';
+        $('#content').get(0).innerHTML = head + add_form_html + str;
+    })
+
+    // $('#content').get(0).innerHTML = head + add_form_html;
 }

@@ -12,7 +12,10 @@ router.get('/', function (req, res, next) {
   res.end();
 });
 
-var employee = require('./api_employee')
+var employee = require('./api_employee');
 router.use(employee);
+
+var customer = require('./api_customer');
+router.use(customer);
 
 module.exports = router;
