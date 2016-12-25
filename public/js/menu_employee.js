@@ -142,11 +142,3 @@ function employeeInfo() {
     xhttp.send();
 
 }
-
-function customerInfo() {
-    alert('customerInfo');
-}
-
-function productInfo() {
-    alert('productInfo');
-}
