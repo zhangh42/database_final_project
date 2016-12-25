@@ -57,8 +57,22 @@ function add_customer() {
     });
 }
 
-function del_customer() {
-
+function del_customer(obj) {
+    var C_id = obj.value;
+    $.ajax({
+        url: '/api/customer',
+        type: 'delete',
+        data: { 'C_id': C_id },
+        success: function (result) {
+            if (result) {
+                alert(result);
+            }
+            // 重新刷新该内容
+            else {
+                customerInfo();
+            }
+        }
+    });
 }
 
 function update_customer() {

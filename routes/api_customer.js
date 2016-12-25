@@ -48,18 +48,18 @@ router.patch('/customer', function (req, res, next) {
     var body = req.body;
 
     // 提取需要更新的参数
-    var sql = 'UPDATE employee SET ';
+    var sql = 'UPDATE customer SET ';
     var keys = Object.keys(body);
     for (var i = 0; i < keys.length; i++) {
         if (body[keys[i]]) {
-            sql += 'E_' + keys[i] + '=' + mysql.escape(body[keys[i]]) + ',';
+            sql += 'C_' + keys[i] + '=' + mysql.escape(body[keys[i]]) + ',';
         }
     }
     // 去掉多余的逗号
     if (sql.endsWith(',')) {
         sql = sql.slice(0, sql.length - 1);
     }
-    sql += ' WHERE E_id=' + body.id;
+    sql += ' WHERE C_id=' + body.id;
     console.log(sql);
     connection.query(sql, function (err, rows) {
         if (err) {
@@ -72,7 +72,7 @@ router.patch('/customer', function (req, res, next) {
 // 删除顾客信息
 router.delete('/customer', function (req, res, next) {
     var body = req.body;
-    connection.query('DELETE FROM employee WHERE E_id = ?', [body.E_id], function (err, rows) {
+    connection.query('DELETE FROM customer WHERE C_id = ?', [body.C_id], function (err, rows) {
         if (err) {
             res.end(err.message);
         }

@@ -18,7 +18,7 @@ function del_employee(obj) {
                 employeeInfo();
             }
         }
-    })
+    });
 }
 
 // 增加员工
