@@ -18,4 +18,7 @@ router.use(employee);
 var customer = require('./api_customer');
 router.use(customer);
 
+var product = require('./api_product');
+router.use(product);
+
 module.exports = router;
