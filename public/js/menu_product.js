@@ -42,5 +42,5 @@ function productInfo() {
         }
         str += '</table></div>';
         $('#content').get(0).innerHTML = head + str;
-    })
+    });
 }

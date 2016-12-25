@@ -21,4 +21,8 @@ router.use(customer);
 var product = require('./api_product');
 router.use(product);
 
+var trade = require('./api_trade');
+router.use(trade);
+
+
 module.exports = router;
