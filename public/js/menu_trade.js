@@ -1,6 +1,6 @@
+// 交易信息
+
 'use strict';
-
-
 
 
 function tradeInfo() {

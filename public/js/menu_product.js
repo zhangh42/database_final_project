@@ -24,7 +24,7 @@ function productInfo() {
         var products = result;
         var str = '';
         str += '<div class="table-responsive"><table class="table table-bordered table-hover">';
-        str += '<tr><th>id</th><th>商品名</th><th>售价</th><th>采购价</th><th>供应商</th><td>操作</td></tr>'
+        str += '<tr><th>id</th><th>商品名</th><th>售价</th><th>采购价</th><th>库存</th><th>供应商</th><td>操作</td></tr>'
         for (var i = 0; i < products.length; i++) {
             var product = products[i];
             str += '<tr>'
@@ -34,6 +34,7 @@ function productInfo() {
                 + '<td>' + product.P_name + '</td>'
                 + '<td>' + product.P_sell_price + '</td>'
                 + '<td>' + product.P_purchase_price + '</td>'
+                + '<td>' + product.P_quantity + '</td>'
                 + '<td>' + product.S_name + '</td>'
                 // 增加删去和修改按钮
                 + '<td>' + '<button type="button" class="btn btn-danger" name="P_id" value="' + product.P_id + '" onclick="del_product(this)">删除</button></td>'
