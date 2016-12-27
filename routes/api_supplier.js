@@ -25,7 +25,7 @@ var router = express.Router();
 router.get('/supplier', function (req, res, next) {
     // 首先获取所有的供应商
     connection.query("select supplier.S_id, supplier.S_name, supplier.S_address,\
-     Product_List.PL_product_name, product_list.PL_price from supplier inner join product_list \
+     Product_List.PL_product_name, Product_List.PL_id, product_list.PL_price from supplier inner join product_list \
      inner join supplier_product_list on supplier_product_list.PL_id = product_list.PL_id \
      and supplier_product_list.S_id = supplier.S_id order by supplier.S_id;",
         function (err, rows) {
