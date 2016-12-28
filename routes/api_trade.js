@@ -30,4 +30,38 @@ router.get('/trade', function (req, res, next) {
         })
 });
 
+router.post('/trade', function (req, res, next) {
+    var body = req.body;
+    connection.query("select P_quantity from product where P_id = ?", [body.P_id],
+        function (err, rows) {
+            if (err) {
+                res.end(err.message);
+            }
+            if (rows[0].P_quantity < body.P_quantity) {
+                res.end("库存不足");
+            } else {
+                body.T_price = body.P_price * body.P_quantity;
+                connection.query("insert into trade values(?, ?, ?, ?, ?, ?, ?)",
+                    [null, body.T_date,body.P_quantity, body.T_price, body.E_id, body.C_id, body.P_id],
+                    function (err, rows) {
+                        if (err) {
+                            res.end(err.message);
+                        }
+                        res.end();
+                    });
+            }
+        })
+});
+
+router.delete('/trade', function (req, res, next) {
+    var body = req.body;
+    connection.query('DELETE FROM trade WHERE T_id = ?', [body.T_id],
+        function (err, rows) {
+            if (err) {
+                res.end(err.message);
+            }
+            res.end();
+        });
+})
+
 module.exports = router;

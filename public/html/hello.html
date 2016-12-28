@@ -18,15 +18,44 @@
 </head>
 
 <body>
-    <form>
-        <input type="number" name="number">
-        <input type="hidden" name="S_id">
-        <input type="hidden" name="PL_id">
-        <input type="submit" value="进货">
+    <form style="width: 20%" id="add_trade" onsubmit="return post_form()">
+         <div class="form-group">
+            <label>交易时间</label>
+            <input type="date" name="T_date" class="form-control" id="exampleInputEmail1" placeholder="商品id">
+        </div>
+        <div class="form-group">
+            <label>商品id</label>
+            <input type="number" name="P_id" class="form-control" id="exampleInputEmail1" placeholder="商品id">
+        </div>
+        <div class="form-group">
+            <label>商品名</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="商品名">
+        </div>
+        <div class="form-group">
+            <label>购买数量</label>
+            <input type="number" name="P_quantity" class="form-control" id="exampleInputEmail1" placeholder="请输入要购买的数量">
+        </div>
+        <div class="form-group">
+            <label>员工id</label>
+            <input type="number" name="E_id" class="form-control" id="exampleInputEmail1" placeholder="员工id">
+        </div>
+        <div class="form-group">
+            <label>员工</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="员工">
+        </div>
+        <div class="form-group">
+            <label>客户id</label>
+            <input type="number" name="C_id" class="form-control" id="exampleInputEmail1" placeholder="客户id">
+        </div>
+        <div class="form-group">
+            <label>客户名</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="客户名">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
     </form>
 
     <!--增加订单-->
-   
+
 </body>
 
 </html>
